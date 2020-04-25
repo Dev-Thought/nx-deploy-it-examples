@@ -1,0 +1,4 @@
+config:
+  api:distPath: ./advanced-deployments/dist/apps/api
+  api:projectName: api
+  azure:location: germanywestcentral
