@@ -1,0 +1,3 @@
+name: i-love-iac
+runtime: nodejs
+description: Infrastructure as Code based on Pulumi - managed by @dev-thought/nx-deploy-it

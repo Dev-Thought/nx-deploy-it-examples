@@ -1,0 +1,4 @@
+config:
+  azure:location: germanywestcentral
+  i-love-iac:distPath: ./advanced-deployments/dist/apps/i-love-iac
+  i-love-iac:projectName: i-love-iac
