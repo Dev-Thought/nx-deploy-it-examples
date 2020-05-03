@@ -1,3 +1,4 @@
-export interface Message {
-  message: string;
+export interface SearchDto {
+  country: string;
+  term: string;
 }

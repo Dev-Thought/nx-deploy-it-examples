@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-nav-list>
+      <a
+        mat-list-item
+        [routerLink]="['/favorites']"
+        routerLinkActive="router-link-active"
+        >Favorites</a
+      >
+      <a
+        mat-list-item
+        [routerLink]="['/search']"
+        routerLinkActive="router-link-active"
+        >Search</a
+      >
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Movie Saver</span>
+      <span class="spacer"></span>
+      <button mat-flat-button (click)="auth.login()" *ngIf="!auth.loggedIn">Log In</button>
+      <button mat-flat-button (click)="auth.logout()" *ngIf="auth.loggedIn">Log Out</button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

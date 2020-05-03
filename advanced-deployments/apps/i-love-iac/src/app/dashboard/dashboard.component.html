@@ -1,0 +1,45 @@
+<div class="grid-container">
+  <mat-form-field>
+    <input matInput #searchInput placeholder="Type your movie" value="" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput #countryInput placeholder="Type the region" value="us" />
+  </mat-form-field>
+  <button
+    mat-mini-fab
+    aria-label="Search"
+    (click)="searchForMovies(searchInput.value, countryInput.value)"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+  <div class="movies">
+    <mat-card class="movie" *ngFor="let movie of movies$ | async as movieList">
+      <mat-card-header>
+        <mat-card-title>
+          {{ movie.name }}
+          <button
+            mat-icon-button
+            class="more-button"
+            aria-label="Add as favorite"
+          >
+            <mat-icon>heart</mat-icon>
+          </button>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="movie-content">
+        <div class="movie-image">
+          <img [src]="movie.external_ids.imdb.data.poster" />
+        </div>
+        <div>{{ movie.external_ids.imdb?.data.plot }}</div>
+        <div>
+          <div>Available:</div>
+          <div *ngFor="let location of movie.locations">
+            <a [href]="location.url" target="_blank"
+              ><img [src]="location.icon" [alt]="location.display_name"
+            /></a>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
