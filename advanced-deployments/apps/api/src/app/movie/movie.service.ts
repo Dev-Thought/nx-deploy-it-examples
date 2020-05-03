@@ -10,40 +10,41 @@ export class MovieService {
   constructor(private httpService: HttpService) {}
 
   searchForMovies(term: string, country: string): Observable<Movie[]> {
-    return this.httpService
-      .get<UtellyLookupResponse>(environment.utelly.endpoint, {
-        params: {
-          term,
-          country
-        },
-        headers: {
-          'content-type': 'application/octet-stream',
-          'x-rapidapi-host': environment.utelly.host,
-          'x-rapidapi-key': environment.rapidapiKey
-        }
-      })
-      .pipe(
-        map(data => data.data.results),
-        switchMap(moviesResponse =>
-          combineLatest(
-            moviesResponse.map(movie => this.getImdbInformation(movie))
-          )
-        ),
-        map(movies =>
-          movies.map(movie => {
-            movie.locations = movie.locations.sort((a, b) => {
-              if (a.name < b.name) {
-                return -1;
-              }
-              if (a.name > b.name) {
-                return 1;
-              }
-              return 0;
-            });
-            return movie;
-          })
+    return of(movies).pipe(
+      // return this.httpService
+      //   .get<UtellyLookupResponse>(environment.utelly.endpoint, {
+      //     params: {
+      //       term,
+      //       country
+      //     },
+      //     headers: {
+      //       'content-type': 'application/octet-stream',
+      //       'x-rapidapi-host': environment.utelly.host,
+      //       'x-rapidapi-key': environment.rapidapiKey
+      //     }
+      //   })
+      //   .pipe(
+      //     map(data => data.data.results),
+      switchMap(moviesResponse =>
+        combineLatest(
+          moviesResponse.map(movie => this.getImdbInformation(movie))
         )
-      );
+      ),
+      map(movies => {
+        return movies.map(movie => {
+          movie.locations = movie.locations.sort((a, b) => {
+            if (a.name < b.name) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0;
+          });
+          return movie;
+        });
+      })
+    );
   }
 
   private getImdbInformation(movie: Movie): Observable<Movie> {

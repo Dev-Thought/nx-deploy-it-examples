@@ -21,8 +21,10 @@
             mat-icon-button
             class="more-button"
             aria-label="Add as favorite"
+            [color]="movie.isFav ? 'warn' : 'primary'"
+            (click)="addToFavorite(movie)"
           >
-            <mat-icon>heart</mat-icon>
+            <mat-icon>favorite</mat-icon>
           </button>
         </mat-card-title>
       </mat-card-header>

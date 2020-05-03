@@ -11,15 +11,27 @@ export class FavoriteService {
     private readonly favRepository: MongoRepository<FavoriteEntity>
   ) {}
 
-  async getFavorites() {
-    return this.favRepository.find();
+  async getFavorites(userId: string) {
+    return (await this.favRepository.findOne({ userId })).movies;
   }
 
   async addFavorite(movie: Movie, userId: string) {
-    const favorites = await this.favRepository.findOne({ userId });
+    let favorites = await this.favRepository.findOne({ userId });
+    if (!favorites) {
+      favorites = new FavoriteEntity();
+      favorites.movies = [];
+      favorites.userId = userId;
+    }
     if (!favorites.movies.find(m => m.id === movie.id)) {
       favorites.movies.push(movie);
-      return this.favRepository.save(favorites);
+      return (await this.favRepository.save(favorites)).movies;
     }
+    return favorites.movies;
+  }
+
+  async removeFavorite(movieId: string, userId: string) {
+    const favorites = await this.favRepository.findOne({ userId });
+    favorites.movies = favorites.movies.filter(movie => movie.id !== movieId);
+    return (await this.favRepository.save(favorites)).movies;
   }
 }

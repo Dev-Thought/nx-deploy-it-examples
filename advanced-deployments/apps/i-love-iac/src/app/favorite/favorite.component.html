@@ -1,1 +1,31 @@
-<p>favorite works!</p>
+<div class="movies">
+  <mat-card class="movie" *ngFor="let movie of favoriteMovies$ | async as myFavorites">
+    <mat-card-header>
+      <mat-card-title>
+        {{ movie.name }}
+        <button
+          mat-icon-button
+          class="more-button"
+          aria-label="Add as favorite"
+          (click)="removeFromFavorite(movie)"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="movie-content">
+      <div class="movie-image">
+        <img [src]="movie.external_ids.imdb.data.poster" />
+      </div>
+      <div>{{ movie.external_ids.imdb?.data.plot }}</div>
+      <div>
+        <div>Available:</div>
+        <div *ngFor="let location of movie.locations">
+          <a [href]="location.url" target="_blank"
+            ><img [src]="location.icon" [alt]="location.display_name"
+          /></a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

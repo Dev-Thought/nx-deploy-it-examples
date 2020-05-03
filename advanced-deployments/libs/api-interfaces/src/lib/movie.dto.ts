@@ -6,6 +6,7 @@ export class Movie {
   provider: string;
   weight: number;
   external_ids?: ExternalIds;
+  isFav?: boolean;
 }
 
 export class MovieLocation {
