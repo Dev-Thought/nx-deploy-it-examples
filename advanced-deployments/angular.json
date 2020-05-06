@@ -225,7 +225,11 @@
             "main": "apps/api/infrastructure/index.ts",
             "provider": "azure",
             "pulumi": {
-              "azure:location": "germanywestcentral"
+              "azure:location": "westeurope",
+              "utellyHost": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+              "imdbHost": "imdb-internet-movie-database-unofficial.p.rapidapi.com",
+              "auth0Domain": "https://movie-saver.eu.auth0.com/",
+              "auth0Audience": "https://api-functions3f2b2a1e.azurewebsites.net"
             }
           }
         },

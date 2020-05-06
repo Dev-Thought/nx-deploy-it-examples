@@ -1,5 +1,6 @@
 import * as azure from '@pulumi/azure';
 import * as pulumi from '@pulumi/pulumi';
+import { createMongoDb } from './database';
 
 const stackConfig = new pulumi.Config();
 const config = {
@@ -11,6 +12,9 @@ const projectName = config.projectName;
 
 const resourceGroup = new azure.core.ResourceGroup(`${projectName}-rg`);
 
+// create database
+const dbAccount = createMongoDb(projectName, resourceGroup);
+
 const nodeApp = new azure.appservice.ArchiveFunctionApp(
   `${projectName}-functions`,
   {
@@ -20,6 +24,16 @@ const nodeApp = new azure.appservice.ArchiveFunctionApp(
     nodeVersion: '~10',
     siteConfig: {
       cors: { allowedOrigins: ['*'] }
+    },
+    appSettings: {
+      MONGO_CONNECTION_STRING: dbAccount.connectionStrings.apply(
+        connectionStrings => connectionStrings[0]
+      ),
+      UTELLY_HOST: stackConfig.require('utellyHost'),
+      IMDB_HOST: stackConfig.require('imdbHost'),
+      RAPIDAPI_KEY: stackConfig.requireSecret('rapidApiKey'),
+      AUTH0_DOMAIN: stackConfig.require('auth0Domain'),
+      AUTH0_AUDIENCE: stackConfig.require('auth0Audience')
     }
   }
 );

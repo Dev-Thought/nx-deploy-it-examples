@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
 
-  apiEndpoint: 'http://localhost:3333',
+  apiEndpoint: 'https://api-functions3f2b2a1e.azurewebsites.net',
 
   auth0: {
-    clientId: 'LMkss3frfejwLPpVS58QfaCjvkKnajvQ',
+    clientId: '9D02dAxNLqNKnVN0EsDibNUFv67jMH1t',
     domain: 'movie-saver.eu.auth0.com',
-    audience: 'http://localhost:3333',
-    redirect: 'http://localhost:4200/callback',
+    audience: 'https://api-functions3f2b2a1e.azurewebsites.net',
+    redirect: 'https://account5cf934e2.z1.web.core.windows.net/callback',
     scope: 'openid profile email'
   }
 };

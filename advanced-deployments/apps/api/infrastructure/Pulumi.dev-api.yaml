@@ -1,4 +1,10 @@
 config:
-  api:distPath: ./advanced-deployments/dist/apps/api
+  api:auth0Audience: https://api-functions3f2b2a1e.azurewebsites.net
+  api:auth0Domain: https://movie-saver.eu.auth0.com/
+  api:distPath: /Users/mitkotschimev/workspace/dev-thought/nx-deploy-it-examples/advanced-deployments/dist/apps/api
+  api:imdbHost: imdb-internet-movie-database-unofficial.p.rapidapi.com
   api:projectName: api
-  azure:location: germanywestcentral
+  api:rapidApiKey:
+    secure: AAABAIm8YKsMkGvVh2RNMd0G7U6py1Jbt+KV145/ihOpPw0e9YEw8SmrQKP4+wUi1fAhxDwDNnEAoaPYGp1v42o3RDvvNnWsVwEda0aUVePf1A==
+  api:utellyHost: utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com
+  azure:location: westeurope
