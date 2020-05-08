@@ -1,5 +1,4 @@
 import * as azure from '@pulumi/azure';
-import * as pulumi from '@pulumi/pulumi';
 
 export function createMongoDb(
   projectName: string,
@@ -16,12 +15,6 @@ export function createMongoDb(
     },
     kind: 'MongoDB'
   });
-
-  // Cosmos DB Database
-  // const db = new azure.cosmosdb.MongoDatabase(`db-${projectName}`, {
-  //   resourceGroupName: resourceGroup.name,
-  //   accountName: cosmosdbAccount.name
-  // });
 
   return cosmosdbAccount;
 }
