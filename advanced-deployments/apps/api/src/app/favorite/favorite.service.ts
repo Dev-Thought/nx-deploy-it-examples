@@ -12,7 +12,7 @@ export class FavoriteService {
   ) {}
 
   async getFavorites(userId: string) {
-    return (await this.favRepository.findOne({ userId })).movies;
+    return (await this.favRepository.findOne({ userId }))?.movies ?? [];
   }
 
   async addFavorite(movie: Movie, userId: string) {
