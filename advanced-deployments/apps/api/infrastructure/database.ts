@@ -4,7 +4,6 @@ export function createMongoDb(
   projectName: string,
   resourceGroup: azure.core.ResourceGroup
 ) {
-  // Cosmos DB Account
   const cosmosdbAccount = new azure.cosmosdb.Account(`${projectName}-cdb`, {
     resourceGroupName: resourceGroup.name,
     location: resourceGroup.location,
