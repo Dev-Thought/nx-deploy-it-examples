@@ -1,7 +1,7 @@
 config:
   api:auth0Audience: https://api-functions3f2b2a1e.azurewebsites.net
   api:auth0Domain: https://movie-saver.eu.auth0.com/
-  api:distPath: /Users/mitkotschimev/workspace/dev-thought/nx-deploy-it-examples/advanced-deployments/dist/apps/api
+  api:distPath: ./advanced-deployments/dist/apps/api
   api:imdbHost: imdb-internet-movie-database-unofficial.p.rapidapi.com
   api:projectName: api
   api:rapidApiKey:

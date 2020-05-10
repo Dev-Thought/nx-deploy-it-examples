@@ -108,8 +108,8 @@
             "main": "apps/i-love-iac/infrastructure/index.ts",
             "provider": "azure",
             "pulumi": {
-              "azure:location": "germanywestcentral",
-              "useCdn": false
+              "azure:location": "westeurope",
+              "useCdn": true
             }
           },
           "configurations": {

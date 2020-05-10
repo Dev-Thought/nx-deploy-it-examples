@@ -1,4 +1,5 @@
 config:
-  azure:location: germanywestcentral
+  azure:location: westeurope
   i-love-iac:distPath: ./advanced-deployments/dist/apps/i-love-iac
   i-love-iac:projectName: i-love-iac
+  i-love-iac:useCdn: "true"
